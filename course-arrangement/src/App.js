@@ -128,8 +128,9 @@ class App extends Component {
         this.startHandle = this.startHandle.bind(this);
         this.durationHandle = this.durationHandle.bind(this);
         this.addHandle = this.addHandle.bind(this);
+        this.clearHandle = this.clearHandle.bind(this);
         this.addCourseHandle = this.addCourseHandle.bind(this);
-
+        this.deleteCourseHandle = this.deleteCourseHandle.bind(this);
         ipc.on('log',function (event,msg) {
             console.log('[MainProcess]-'+msg);
         });
@@ -216,6 +217,13 @@ class App extends Component {
         }
 
     }
+    clearHandle(){
+        let temp = this.state.courseTemplate;
+        temp.time = [];
+        this.setState({courseTemplate:temp});
+
+    }
+
     addCourseHandle(){
         let newCourse = this.state.courseTemplate;
         let temp={
@@ -225,6 +233,11 @@ class App extends Component {
             teacher:newCourse.teacher,
             classroom:newCourse.classroom
         };
+        if(newCourse.time.length === 0)
+        {
+            alert('请添加课程时间！');
+            return;
+        }
         let course = this.state.course;
         if ("rank_"+newCourse.rank in course[newCourse.subject]){
             course[newCourse.subject]["rank_"+newCourse.rank].push(temp);
@@ -233,23 +246,37 @@ class App extends Component {
             course[newCourse.subject]["rank_"+newCourse.rank]=[temp];
         }
         this.setState({course:course});
+        this.clearHandle();
+    }
+    deleteCourseHandle(subject,rank,name){
+        let tempList = this.state.course[subject][rank];
+        console.log(tempList,subject,rank,name);
+        tempList = tempList.filter(
+            function (course) {
+               return course.name != name;
+            }
+        );
+        let tempCourse = this.state.course;
+        tempCourse[subject][rank] = tempList;
+        this.setState({course:tempCourse});
     }
 
   render() {
         let that = this;
       //显示当前时间设置
-      let timeSetting =<div>
-          <div>
+      let timeSetting =<div id="time-panel">
+          <div id="time-setting-panel">
               <span>每周</span>
               <DropdownList list={this.weekdays} databind={this.weekdayHandle}></DropdownList>
               <span>第</span>
-              <Textbox databind={this.startHandle}/>
+              <Textbox style={{width:'41px'}} databind={this.startHandle}/>
               <span>节开始，上</span>
-              <Textbox databind={this.durationHandle}/>
+              <Textbox style={{width:'41px'}} databind={this.durationHandle}/>
               <span>节课</span>
-              <button onClick={this.addHandle}>添加</button>
+              <button onClick={this.addHandle} className="add-button">+</button>
+              <button onClick={this.clearHandle} className="button">清空</button>
           </div>
-          <div>
+          <div id="time-list-panel">
               {this.state.courseTemplate.time.map(function (item) {
                   let weekday;
                   for(let i in that.weekdays){
@@ -261,7 +288,7 @@ class App extends Component {
                       }
                   }
 
-                  return <div>每周{weekday}-第{item.start}节开始-上{item.duration}节课</div>
+                  return <div className="time-list-item"> <div style={{height:'24px',width:'7px',backgroundColor:'#6FCF97',marginRight:'17px'}}> </div>每周{weekday}&nbsp;&nbsp;&nbsp;&nbsp;第{item.start}节&nbsp;&nbsp;&nbsp;&nbsp;<b>开始</b>&nbsp;&nbsp;&nbsp;&nbsp;上{item.duration}节课</div>
               })}
           </div>
       </div>;
@@ -280,42 +307,44 @@ class App extends Component {
                           weekday = that.weekdays[j].name;
                       }
                   }
-                  let item = <div>
-                      <span>每周{weekday} </span>
-                      <span>{course.name} </span>
-                      <span>{course.teacher} 老师 </span>
-                      <span>{course.classroom} 教室 </span>
-                  </div>
+                  let item = <div className="course-list-item">
+                      <div style={{height:'29px',width:'7px',backgroundColor:'#F2994A',marginRight:'17px'}}> </div>
+                      <span>每周{weekday}&nbsp;&nbsp;&nbsp;</span>
+                      <span><b>{course.name}</b>&nbsp;&nbsp;&nbsp;</span>
+                      <span>{course.teacher}老师&nbsp;&nbsp;&nbsp;</span>
+                      <span>教室-{course.classroom}</span>
+                      <p onClick={()=>{this.deleteCourseHandle(subject,rank,course.name)}} style={{color:"#FF0000",fontSize:'10px'}}>&nbsp;&nbsp;&nbsp;删除</p>
+                  </div>;
                   courseList.push(item);
               }
           }
       }
       let settingFace=<div id="setting-face">
         <div>
-            <div>
+            <div className="panel">
                 <p>科目</p>
                 <DropdownList list={this.subjects} databind={this.subjectHandle}></DropdownList>
                 <p>级别</p>
-                <Textbox databind={this.rankHandle}></Textbox>
+                <Textbox style={{width:'36px'}} databind={this.rankHandle}></Textbox>
                 <p>名称</p>
-                <Textbox databind={this.nameHandle}></Textbox>
-                <button onClick={this.timeButtonHandle} className="button">时间段</button>
+                <Textbox style={{width:'150px'}} databind={this.nameHandle}></Textbox>
+                <button  onClick={this.timeButtonHandle} className="button">时间段</button>
 
             </div>
             {this.state.isTime?timeSetting:<div/>}
-            <div>
+            <div className="panel">
                 <p>教师</p>
-                <Textbox databind={this.teacherHandle}></Textbox>
+                <Textbox style={{width:'78px'}} databind={this.teacherHandle}></Textbox>
                 <p>教室</p>
-                <Textbox databind={this.classroomHandle}></Textbox>
+                <Textbox style={{width:'78px'}} databind={this.classroomHandle}></Textbox>
                 <p>人数</p>
-                <Textbox databind={this.amountHandle}></Textbox>
+                <Textbox style={{width:'70px'}} databind={this.amountHandle}></Textbox>
                 <button onClick={this.addCourseHandle} className="main-button">添加课程</button>
             </div>
-            <div>
+            <div id="list-title">
                 <span>当前课表</span>
-                <span>导出文件</span>
-                <span>从文件加载</span>
+                <p>导出文件</p>
+                <p>从文件加载</p>
             </div>
             <div>
                 {courseList}
@@ -356,7 +385,7 @@ class Textbox extends Component{
     }
 
     render(){
-        return <input id={this.props.id} className={this.props.className} style={this.props.style} type="text" onChange={this.handleChange} onFocus={this.handleChange} onBlur={this.handleChange}/>
+        return <input id={this.props.id} className="textbox" style={this.props.style} type="text" onChange={this.handleChange} onFocus={this.handleChange} onBlur={this.handleChange}/>
     }
 
 }

@@ -25,25 +25,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+            <state relative-caret-position="255">
+              <caret line="17" column="109" lean-forward="false" selection-start-line="17" selection-start-column="109" selection-end-line="17" selection-end-column="109" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/App.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="278" column="17" lean-forward="true" selection-start-line="278" selection-start-column="17" selection-end-line="278" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="135" column="41" lean-forward="true" selection-start-line="135" selection-start-column="41" selection-end-line="135" selection-end-column="41" />
+            <state relative-caret-position="310">
+              <caret line="239" column="9" lean-forward="true" selection-start-line="239" selection-start-column="9" selection-end-line="239" selection-end-column="9" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="e#242#2298#0" expanded="false" />
-                <element signature="e#318#2072#0" expanded="false" />
                 <element signature="e#2322#2925#0" expanded="false" />
                 <element signature="e#2949#3184#0" expanded="false" />
                 <element signature="n#!!block;n#settingButtonHandle#0;n#App#0" expanded="false" />
@@ -54,12 +62,12 @@
                 <element signature="n#!!block;n#nameHandle#0;n#App#0" expanded="false" />
                 <element signature="n#!!block;n#amountHandle#0;n#App#0" expanded="false" />
                 <element signature="n#!!block;n#teacherHandle#0;n#App#0" expanded="false" />
+                <element signature="n#!!block;n#weekdayHandle#0;n#App#0" expanded="false" />
                 <element signature="n#!!block;n#startHandle#0;n#App#0" expanded="false" />
                 <element signature="n#!!block;n#durationHandle#0;n#App#0" expanded="false" />
                 <element signature="n#!!block;n#addHandle#0;n#App#0" expanded="false" />
-                <element signature="e#7158#8071#0" expanded="false" />
-                <element signature="e#8148#8992#0" expanded="false" />
-                <element signature="e#10197#10234#0" expanded="false" />
+                <element signature="n#!!block;n#clearHandle#0;n#App#0" expanded="false" />
+                <element signature="e#11953#11990#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -83,8 +91,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/main.js" />
+        <option value="$PROJECT_DIR$/src/App.css" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -100,7 +109,7 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="48" />
+    <option name="x" value="65" />
     <option name="y" value="22" />
     <option name="width" value="1232" />
     <option name="height" value="699" />
@@ -143,6 +152,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="course-arrangement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="course-arrangement" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="font" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -245,15 +272,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1502235237695</updated>
-      <workItem from="1502235240236" duration="16442000" />
+      <workItem from="1502235240236" duration="24816000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16442000" />
+    <option name="totallyTimeSpent" value="24816000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="48" y="22" width="1232" height="699" extended-state="0" />
+    <frame x="65" y="22" width="1232" height="699" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -286,7 +313,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -299,14 +326,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="109" lean-forward="false" selection-start-line="17" selection-start-column="109" selection-end-line="17" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="278" column="17" lean-forward="true" selection-start-line="278" selection-start-column="17" selection-end-line="278" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="135" column="41" lean-forward="true" selection-start-line="135" selection-start-column="41" selection-end-line="135" selection-end-column="41" />
+        <state relative-caret-position="310">
+          <caret line="239" column="9" lean-forward="true" selection-start-line="239" selection-start-column="9" selection-end-line="239" selection-end-column="9" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#242#2298#0" expanded="false" />
-            <element signature="e#318#2072#0" expanded="false" />
             <element signature="e#2322#2925#0" expanded="false" />
             <element signature="e#2949#3184#0" expanded="false" />
             <element signature="n#!!block;n#settingButtonHandle#0;n#App#0" expanded="false" />
@@ -317,21 +358,13 @@
             <element signature="n#!!block;n#nameHandle#0;n#App#0" expanded="false" />
             <element signature="n#!!block;n#amountHandle#0;n#App#0" expanded="false" />
             <element signature="n#!!block;n#teacherHandle#0;n#App#0" expanded="false" />
+            <element signature="n#!!block;n#weekdayHandle#0;n#App#0" expanded="false" />
             <element signature="n#!!block;n#startHandle#0;n#App#0" expanded="false" />
             <element signature="n#!!block;n#durationHandle#0;n#App#0" expanded="false" />
             <element signature="n#!!block;n#addHandle#0;n#App#0" expanded="false" />
-            <element signature="e#7158#8071#0" expanded="false" />
-            <element signature="e#8148#8992#0" expanded="false" />
-            <element signature="e#10197#10234#0" expanded="false" />
+            <element signature="n#!!block;n#clearHandle#0;n#App#0" expanded="false" />
+            <element signature="e#11953#11990#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="45" column="7" lean-forward="false" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>

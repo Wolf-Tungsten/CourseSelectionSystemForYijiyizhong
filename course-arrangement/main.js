@@ -11,10 +11,11 @@ let win;
 
 const ipc = require('electron').ipcMain;
 var renderMsgSender;
+var course;
 
 function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 800, height: 600});
+    win = new BrowserWindow({width: 640, height: 480, resizable:false, maximizable:false, useContentSize:true});
 
     // and load the index.html of the app.
     if(pkg.dev){
