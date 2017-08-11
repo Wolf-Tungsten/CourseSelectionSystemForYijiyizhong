@@ -4,6 +4,16 @@ import './App.css';
 
 const ipc = window.require('electron').ipcRenderer;
 
+function setCourseList(list){
+    ipc.send('set-course-list',list);
+}
+
+function getCourseList(){
+    ipc.send('get-course-list','');
+}
+
+
+
 class App extends Component {
     constructor(props){
         super(props);
@@ -131,10 +141,15 @@ class App extends Component {
         this.clearHandle = this.clearHandle.bind(this);
         this.addCourseHandle = this.addCourseHandle.bind(this);
         this.deleteCourseHandle = this.deleteCourseHandle.bind(this);
+        this.writeCourseToFile = this.writeCourseToFile.bind(this);
+        this.getCourseFromFile = this.getCourseFromFile.bind(this);
         ipc.on('log',function (event,msg) {
             console.log('[MainProcess]-'+msg);
         });
         ipc.send('render_sign_in','log');
+        ipc.on('course-list',(event, list)=>{
+            this.setState({course:list});
+        });
 
     }
 
@@ -246,6 +261,7 @@ class App extends Component {
             course[newCourse.subject]["rank_"+newCourse.rank]=[temp];
         }
         this.setState({course:course});
+        setCourseList(course);
         this.clearHandle();
     }
     deleteCourseHandle(subject,rank,name){
@@ -258,7 +274,17 @@ class App extends Component {
         );
         let tempCourse = this.state.course;
         tempCourse[subject][rank] = tempList;
+        setCourseList(tempCourse);
         this.setState({course:tempCourse});
+    }
+
+    getCourseFromFile(){
+        ipc.send('get-course-list','');
+    }
+
+    writeCourseToFile(){
+        setCourseList(this.state.course);
+        ipc.send('write-course-list-to-file','');
     }
 
   render() {
@@ -309,10 +335,12 @@ class App extends Component {
                   }
                   let item = <div className="course-list-item">
                       <div style={{height:'29px',width:'7px',backgroundColor:'#F2994A',marginRight:'17px'}}> </div>
-                      <span>每周{weekday}&nbsp;&nbsp;&nbsp;</span>
+                      <span>每周{weekday} 第{course.time[0].start}节&nbsp;&nbsp;&nbsp;</span>
                       <span><b>{course.name}</b>&nbsp;&nbsp;&nbsp;</span>
+                      <span>{rank.slice(5)}级课程&nbsp;&nbsp;&nbsp;</span>
                       <span>{course.teacher}老师&nbsp;&nbsp;&nbsp;</span>
-                      <span>教室-{course.classroom}</span>
+                      <span>教室-{course.classroom}&nbsp;&nbsp;&nbsp;</span>
+                      <span>{course.amount}人</span>
                       <p onClick={()=>{this.deleteCourseHandle(subject,rank,course.name)}} style={{color:"#FF0000",fontSize:'10px'}}>&nbsp;&nbsp;&nbsp;删除</p>
                   </div>;
                   courseList.push(item);
@@ -343,10 +371,10 @@ class App extends Component {
             </div>
             <div id="list-title">
                 <span>当前课表</span>
-                <p>导出文件</p>
-                <p>从文件加载</p>
+                <p onClick={this.writeCourseToFile}>导出文件</p>
+                <p onClick={this.getCourseFromFile}>从文件加载</p>
             </div>
-            <div>
+            <div style={{overflow:'scroll'}}>
                 {courseList}
             </div>
         </div>

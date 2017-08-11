@@ -10,12 +10,20 @@ const pkg = require('./package.json')
 let win;
 
 const ipc = require('electron').ipcMain;
+const dialog = require('electron').dialog;
+const fs = require('fs');
+
+
 var renderMsgSender;
 var course;
 
 function createWindow () {
     // Create the browser window.
-    win = new BrowserWindow({width: 640, height: 480, resizable:false, maximizable:false, useContentSize:true});
+    win = new BrowserWindow({width: 640,
+        height: 480,
+        //resizable:false,
+        maximizable:false,
+        useContentSize:true});
 
     // and load the index.html of the app.
     if(pkg.dev){
@@ -45,6 +53,44 @@ function main(){
     ipc.on('render_sign_in',function (event,args) {
         renderMsgSender = event.sender;
     });
+    //渲染进程更新主进程课程表
+    ipc.on('set-course-list',function (event,args) {
+        course = args;
+        log('更新课程表');
+        log(JSON.stringify(course));
+    });
+    //从文件获取课程表
+    ipc.on('get-course-list',function(event,args){
+        let path = '.';
+        dialog.showOpenDialog({title:'选择课表文件',
+            properties:['openFile'],
+            filters: [
+            {name: '课表文件', extensions: ['course']}
+        ]
+        },(filePath)=>{
+            if(filePath) {
+                let courseFromFile = JSON.parse(fs.readFileSync(filePath.toString()));
+                log(filePath);
+                event.sender.send('course-list', courseFromFile);
+            }
+        })
+    });
+    //将课程表写入到文件
+    ipc.on('write-course-list-to-file',function (event,args) {
+        dialog.showSaveDialog({title:'保存课表文件',
+        filter:[{
+            name:'课程表文件',
+            extensions:['course']
+        }],
+            defaultPath:'课程安排.course'},
+            (filename)=>{
+            if(filename) {
+                fs.writeFileSync(filename, JSON.stringify(course));
+            }
+            })
+    })
+
+
 }
 
 function log(msg){
