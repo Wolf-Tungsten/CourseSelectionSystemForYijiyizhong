@@ -28,7 +28,7 @@ function createWindow () {
     // and load the index.html of the app.
     if(pkg.dev){
         win.loadURL("http://localhost:3000/");
-        win.webContents.openDevTools();
+
     }else{
         win.loadURL(url.format({
             pathname: path.join(__dirname, '../build/index.html'),
@@ -38,7 +38,7 @@ function createWindow () {
     }
 
     // Open the DevTools.
-
+    win.webContents.openDevTools();
 
     // Emitted when the window is closed.
     win.on('closed', () => {

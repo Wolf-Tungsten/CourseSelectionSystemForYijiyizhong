@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import './font/NotoSansHans-Black.otf';
+import './font/NotoSansHans-Bold.otf';
+import './font/NotoSansHans-Medium.otf';
+import './font/NotoSansHans-DemiLight.otf';
+import './font/NotoSansHans-Light.otf';
+import './font/NotoSansHans-Regular.otf';
+
 
 const ipc = window.require('electron').ipcRenderer;
 

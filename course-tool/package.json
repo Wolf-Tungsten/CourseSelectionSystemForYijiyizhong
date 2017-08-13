@@ -17,7 +17,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-    "dev":false,
+    "dev":true,
   "main": "./src/main.js",
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -25,7 +25,7 @@
     "babel-preset-react": "^6.24.1",
     "electron-prebuilt-compile": "1.7.5"
   },
-    "homepage": ".",
+    "homepage": "./",
   "config": {
     "forge": {
       "make_targets": {

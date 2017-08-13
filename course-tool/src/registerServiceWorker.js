@@ -34,10 +34,10 @@ export default function register() {
 
       if (!isLocalhost) {
         // Is not local host. Just register service worker
-        registerValidSW(swUrl);
+        //registerValidSW(swUrl);
       } else {
         // This is running on localhost. Lets check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl);
+        //checkValidServiceWorker(swUrl);
       }
     });
   }
@@ -101,8 +101,8 @@ function checkValidServiceWorker(swUrl) {
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
-    });
+    //navigator.serviceWorker.ready.then(registration => {
+      //registration.unregister();
+   // });
   }
 }
