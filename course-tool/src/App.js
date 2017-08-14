@@ -62,32 +62,32 @@ class App extends Component {
                     rank_2:[],
                 },
                 english:{
-                    1:[],
-                    2:[],
+                    rank_1:[],
+                    rank_2:[],
                 },
                 physics:{
-                    1:[],
-                    2:[],
+                    rank_1:[],
+                    rank_2:[],
                 },
                 chemistry:{
-                    1:[],
-                    2:[],
+                    rank_1:[],
+                    rank_2:[],
                 },
                 biology:{
-                    1:[],
-                    2:[],
+                    rank_1:[],
+                    rank_2:[],
                 },
                 philosophy:{
-                    1:[],
-                    2:[],
+                    rank_1:[],
+                    rank_2:[],
                 },
                 geography:{
-                    1:[],
-                    2:[]
+                    rank_1:[],
+                    rank_2:[],
                 },
                 history:{
-                    1:[],
-                    2:[]
+                    rank_1:[],
+                    rank_2:[],
                 },
 
             },
@@ -150,6 +150,8 @@ class App extends Component {
         this.deleteCourseHandle = this.deleteCourseHandle.bind(this);
         this.writeCourseToFile = this.writeCourseToFile.bind(this);
         this.getCourseFromFile = this.getCourseFromFile.bind(this);
+        this.spawnTemplate = this.spawnTemplate.bind(this);
+        this.loadGradeData = this.loadGradeData.bind(this);
         ipc.on('log',function (event,msg) {
             console.log('[MainProcess]-'+msg);
         });
@@ -294,6 +296,14 @@ class App extends Component {
         ipc.send('write-course-list-to-file','');
     }
 
+    spawnTemplate(){
+        ipc.send('spawn-template', '');
+    }
+
+    loadGradeData(){
+        ipc.send('load-grade-data', '');
+    }
+
   render() {
         let that = this;
       //显示当前时间设置
@@ -389,7 +399,8 @@ class App extends Component {
       </div>;
 
       let arrangeFace=<div id="arrange-face">
-
+            <button onClick={this.spawnTemplate}>生成成绩单模板</button>
+            <button onClick={this.loadGradeData}>载入成绩单并排课</button>
       </div>;
 
     return (

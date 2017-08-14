@@ -6,7 +6,8 @@
     "electron-compile": "^6.4.1",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.11"
+    "react-scripts": "1.0.11",
+    "xlsx": "^0.11.2"
   },
   "scripts": {
     "react-start": "react-scripts start",
@@ -17,7 +18,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-    "dev":true,
+  "dev": true,
   "main": "./src/main.js",
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
@@ -25,7 +26,7 @@
     "babel-preset-react": "^6.24.1",
     "electron-prebuilt-compile": "1.7.5"
   },
-    "homepage": "./",
+  "homepage": "./",
   "config": {
     "forge": {
       "make_targets": {
