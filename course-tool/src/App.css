@@ -14,6 +14,10 @@
   font-family: NotoSansHans-Light;
   src: url(./font/NotoSansHans-Light.otf);
 }
+@font-face {
+  font-family: NotoSansHans-DemiLight;
+  src: url(./font/NotoSansHans-DemiLight.otf);
+}
 
 .font{
   background-image: url("./font/NotoSansHans-Black.otf");
@@ -300,4 +304,137 @@ select{
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+#arrange-face{
+  position: fixed;
+  top:50px;
+  height: 430px;
+  width: 640px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#spawn-button{
+
+
+  position: fixed;
+  width: 152.31px;
+  height: 35px;
+  left: 74px;
+  top: 335px;
+
+  border: 1px solid #27AE60;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #FFFFFF;
+
+  /* 生成成绩单模板 */
+
+
+  font-family: NotoSansHans-Light;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #219653;
+
+}
+
+#analyze-button{
+
+
+  position: fixed;
+  width: 152.31px;
+  height: 35px;
+  left: 243.85px;
+  top: 335px;
+  background: #219653;
+  border-radius: 6px;
+
+
+  font-family: NotoSansHans-Light;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #F2F2F2;
+
+  border: 0px;
+}
+
+#export-button{
+
+
+  /* Rectangle 8 */
+
+  position: fixed;
+  width: 152.31px;
+  height: 35px;
+  left: 413.69px;
+  top: 335px;
+
+  border: 1px solid #27AE60;
+  box-sizing: border-box;
+  border-radius: 6px;
+  background-color: #ffffff;
+
+  font-family: NotoSansHans-Light;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+
+  color: #219653;
+
+}
+
+#dashboard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top:80px;
+}
+
+.number-pad{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.number-pad p{
+
+  font-family: NotoSansHans-DemiLight;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  font-size: 14px;
+  text-align: center;
+  color: #333333;
+
+}
+
+.bignumber{
+  font-size: 72px;
+}
+
+.green-font{
+  color: #219653;
+}
+#line{
+  /* Line 2 */
+
+  width: 152px;
+  height: 1px;
+  background-color: #E0E0E0;
+  border: 0 solid #E0E0E0;
+  transform: rotate(90deg);
+
 }

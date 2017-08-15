@@ -99,7 +99,9 @@ class App extends Component {
                 weekday:6,
                 start:1,
                 duration:1
-            }
+            },
+            currentCount:'---',
+            successCount:'---'
         };
         this.subjects=[
             {name:'语文',
@@ -152,6 +154,7 @@ class App extends Component {
         this.getCourseFromFile = this.getCourseFromFile.bind(this);
         this.spawnTemplate = this.spawnTemplate.bind(this);
         this.loadGradeData = this.loadGradeData.bind(this);
+        this.exportResult = this.exportResult.bind(this);
         ipc.on('log',function (event,msg) {
             console.log('[MainProcess]-'+msg);
         });
@@ -159,7 +162,12 @@ class App extends Component {
         ipc.on('course-list',(event, list)=>{
             this.setState({course:list});
         });
-
+        ipc.on('set-counter',(event, number)=>{
+            this.setState({currentCount:number});
+        });
+        ipc.on('set-success-counter',(event, number)=>{
+            this.setState({successCount:number});
+        })
     }
 
     settingButtonHandle(){
@@ -304,6 +312,10 @@ class App extends Component {
         ipc.send('load-grade-data', '');
     }
 
+    exportResult(){
+        ipc.send('export-result','');
+    }
+
   render() {
         let that = this;
       //显示当前时间设置
@@ -399,8 +411,26 @@ class App extends Component {
       </div>;
 
       let arrangeFace=<div id="arrange-face">
-            <button onClick={this.spawnTemplate}>生成成绩单模板</button>
-            <button onClick={this.loadGradeData}>载入成绩单并排课</button>
+
+          <div id="dashboard">
+              <div className="number-pad">
+                  <p>已为</p>
+                  <p style={{fontSize:'72px',padding:-10,margin:-10}}>{this.state.currentCount}</p>
+                  <p>名同学进行排课</p>
+              </div>
+              <div id="line"></div>
+              <div className="number-pad" style={{color:'#219653'}}>
+                  <p style={{color:'#219653'}}>已为</p>
+                  <p style={{fontSize:'72px',padding:-10,margin:-10,color:'#219653'}}>{this.state.successCount}</p>
+                  <p style={{color:'#219653'}}>名同学成功排课</p>
+              </div>
+          </div>
+          <div>
+            <button id="spawn-button" onClick={this.spawnTemplate}>生成成绩单模板</button>
+            <button id="analyze-button" onClick={this.loadGradeData}>载入成绩单并分析</button>
+            <button id="export-button"  onClick={this.exportResult}>导出结果</button>
+          </div>
+
       </div>;
 
     return (
